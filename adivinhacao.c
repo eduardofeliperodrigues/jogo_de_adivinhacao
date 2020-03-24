@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define TENTATIVAS 4
+
 int main()
 {
     //Imprime o cabeçalho do jogo
@@ -16,7 +18,7 @@ int main()
     // Numero de vidas
     int lives = 1;
         
-    while (lives < 4){
+    while (lives < TENTATIVAS){
         
         printf("\n\n***************************************\n");
         
@@ -38,15 +40,12 @@ int main()
             printf("\nVoce acertou, parabens!\n");
             break;
         }
-        else{
-            if (maior){
+        else if (maior){
                 printf("\nSeu chute foi maior que o numero secreto.\n");
-            }
-            else{
-                printf("\nSeu chute foi menor que o numero secreto.\n");
-            }
         }
-        
+        else {
+            printf("\nSeu chute foi menor que o numero secreto.\n");
+        }
         
         lives ++;
     }
