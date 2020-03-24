@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -15,6 +16,11 @@ int main()
         
     // Numero de vidas
     int lives = 1;
+    
+    // Valor da pontuação inicial de cada jogador;
+    int pontos = 1000;
+    
+    int pontos_perdidos;
         
     while(1){
         
@@ -41,21 +47,28 @@ int main()
         int maior = chute > random_number;
 
         if (acertou){
-
-            printf("\nVoce acertou, parabens!\n");
+            system("cls");
+            printf("*****************************************\n");
+            printf("\n*       Voce acertou, parabens!         *\n");
+            printf("\n*  Voce acertou o jogo em %d tentativas  *\n", lives);
+            printf("\n*   Sua pontuacao final eh %d pontos!  *\n\n", pontos);
+            printf("*****************************************\n");
             break;
         }
         else if (maior){
-                printf("\nSeu chute foi maior que o numero secreto.\n");
+            printf("\nSeu chute foi maior que o numero secreto.\n");
+            pontos_perdidos = (chute - random_number)/2;
         }
         else {
             printf("\nSeu chute foi menor que o numero secreto.\n");
+            pontos_perdidos = (random_number - chute)/2;
         }
         
         lives ++;
+        
+        pontos = pontos - pontos_perdidos;
     }
-
-    printf("\nVoce acertou o jogo em %d tentativas\n\n", lives);
     
     return 0;
+    
 }
