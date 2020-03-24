@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#define TENTATIVAS 4
-
 int main()
 {
     //Imprime o cabeçalho do jogo
@@ -18,12 +16,12 @@ int main()
     // Numero de vidas
     int lives = 1;
         
-    while (lives <= TENTATIVAS){
+    while(1){
         
         printf("\n\n***************************************\n");
         
         //Imprime a vida atual
-        printf("\n\nTentativa %d de %d\n", lives, TENTATIVAS);
+        printf("\n\nTentativa numero %d\n", lives);
         
         // Pede para o usuario digitar o seu chute;
         printf("\nQual eh o seu chute? ");
@@ -56,6 +54,8 @@ int main()
         
         lives ++;
     }
-    printf("\n\n***** Suas vidas acabaram *****");   
+
+    printf("\nVoce acertou o jogo em %d tentativas\n\n", lives);
+    
     return 0;
 }
