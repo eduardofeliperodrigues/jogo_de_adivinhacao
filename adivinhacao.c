@@ -18,17 +18,24 @@ int main()
     // Numero de vidas
     int lives = 1;
         
-    while (lives < TENTATIVAS){
+    while (lives <= TENTATIVAS){
         
         printf("\n\n***************************************\n");
         
         //Imprime a vida atual
-        printf("\n\nTentativa %d\n", lives);
+        printf("\n\nTentativa %d de %d\n", lives, TENTATIVAS);
         
         // Pede para o usuario digitar o seu chute;
         printf("\nQual eh o seu chute? ");
         scanf("%d", &chute);
         printf("\nSeu chute foi %d\n", chute);
+        
+        while (chute < 0){
+            // Pede para o usuario digitar o seu chute;
+            printf("\nVoce digitou um valor menor que 0, digite novamente: ");
+            scanf("%d", &chute);
+            printf("\nSeu chute foi %d\n", chute);
+        }
         
         // Comparação do chute com o numero aleatório
         
