@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main()
 {
@@ -8,8 +9,18 @@ int main()
     printf("* Bem vindo ao programa de advinhacao *\n");
     printf("***************************************\n");
     
+    
+    
+    //É necessario criar uma semente diferente para a função rand,
+    //então pegamos o numero de segundos como semente e passamos para srand.
+    int segundos = time(0);
+    srand(segundos);
+    
     //Geração do numero aleatório
-    float random_number = 42;
+    int random_number = rand();
+    
+    //Pegamos o modulo de 100 para gerar valores dentro de uma escala de 0 a 99.
+    int numero_secreto = random_number % 100;
     
     //Valor do chute
     float chute;
@@ -38,8 +49,8 @@ int main()
         
         // Comparação do chute com o numero aleatório
         
-        int acertou = (chute == random_number);
-        int maior = chute > random_number;
+        int acertou = (chute == numero_secreto);
+        int maior = chute > numero_secreto;
 
         if (acertou){
             system("cls");
