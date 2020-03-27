@@ -5,59 +5,103 @@
 int main()
 {
     //Imprime o cabeçalho do jogo
-    printf("***************************************\n");
-    printf("* Bem vindo ao programa de advinhacao *\n");
-    printf("***************************************\n");
     
+
+    printf("    .     .       .  .   . .   .   . .    +  .                   \n");
+    printf("  .     .  :     .    .. :. .___---------___.                    \n");
+    printf("       .  .   .    .  :.:. _ . .   .  '.. :  -_. .               \n");
+    printf("    .  :       .  .  .:../:            . .   :.:\\.              \n");
+    printf("        .   . :: +. :.:/: .   .    .        . . .:\\             \n");
+    printf(" .  :    .     . _ :::/:               .  ^ .  . .:\\            \n");
+    printf("  .. . .   . - : :.:./.                        .  .:\\           \n");
+    printf("  .      .     . :..|:                    .  .  ^. .:|           \n");
+    printf("    .       . : : ..||        .                . . !:|           \n");
+    printf("  .     . . . ::. ::\\(                           . :)/          \n");
+    printf(" .   .     : . : .:.|. ######              .#######::|           \n");
+    printf("  :.. .  :-  : .:  ::|.#######           ..########:|            \n");
+    printf(" .  .  .  ..  .  .. :\\ ########          :######## :/           \n");
+    printf("  .        .+ :: : -.:\\ ########       . ########.:/            \n");
+    printf("    .  .+   . . . . :.:\\. #######       #######..:/             \n");
+    printf("      :: . . . . ::.:..:.\\           .   .   ..:/               \n");
+    printf("   .   .   .  .. :  -::::.\\.       | |     . .:/                \n");
+    printf("      .  :  .  .  .-:.:.::.\\             ..:/                   \n");
+    printf(" .      -.   . . . .: .:::.:.\\.           .:/                   \n");
+    printf(".   .   .  :      : ....::_:..:\\   ___.  :/                     \n");
+    printf("   .   .  .   .:. .. .  .: :.:.:\\       :/                      \n");
+    printf("     +   .   .   : . ::. :.:. .:.|\\  .:/|                       \n");
+    printf("     .         +   .  .  ...:: ..|  --.:|                        \n");
+    printf(".      . . .   .  .  . ... :..:../...... \\                      \n");
+    printf(" .   .       .      :  .   .: ::/  .  .:: \\                     \n");
+    printf(".............................................                    \n");
+    printf("*                  Bem vindo ao jogo de advinhacao              *\n");
+    printf("...........................................................      \n");
     
+    printf("\n\n\n");
     
     //É necessario criar uma semente diferente para a função rand,
     //então pegamos o numero de segundos como semente e passamos para srand.
     int segundos = time(0);
     srand(segundos);
     
-    //Geração do numero aleatório
     int random_number = rand();
     
-    //Pegamos o modulo de 100 para gerar valores dentro de uma escala de 0 a 99.
     int numero_secreto = random_number % 100;
     
     //Valor do chute
-    float chute;
+    int chute;
+    
+    // Variavel de acerto
+    int acertou =0;
+    
+    // Escolha do nivel de dificuldade
+    int nivel;
+    printf("Nivel de dificuldade quer jogar\n");
+    printf("(1) Facil (2) Medio (3) Dificil\n\n");
+    printf("Escolha: ");
+    scanf("%d",&nivel);
+    
+    //Variavel nivel
+    int numero_tentativas, i;
+    
+    if (nivel == 1){
+        numero_tentativas = 20;
+    }
+    else if(nivel == 2){
+        numero_tentativas = 10;
+    }
+    else{
+        numero_tentativas = 5;
+    }
         
-    // Numero de vidas
-    float lives = 1;
+    
+    for (i = 1; i <= numero_tentativas; i++){
         
-    while(1){
+        printf("\n\nVoce tem %d tentativas, boa sorte!!\n\n", numero_tentativas);
         
-        printf("\n\n***************************************\n");
+        printf("\n\n***********************************************\n");
         
         //Imprime a vida atual
-        printf("\n\nTentativa numero %4.0f\n", lives);
+        printf("\n\nTentativa numero %d\n", i);
         
         // Pede para o usuario digitar o seu chute;
         printf("\nQual eh o seu chute? ");
-        scanf("%f", &chute);
-        printf("\nSeu chute foi %.0f\n", chute);
+        scanf("%d", &chute);
+        printf("\nSeu chute foi %d\n", chute);
         
         while (chute < 0){
             // Pede para o usuario digitar o seu chute;
             printf("\nVoce digitou um valor menor que 0, digite novamente: ");
-            scanf("%f", &chute);
-            printf("\nSeu chute foi %.0f\n", chute);
+            scanf("%d", &chute);
+            printf("\nSeu chute foi %d\n", chute);
         }
         
         // Comparação do chute com o numero aleatório
         
-        int acertou = (chute == numero_secreto);
+        acertou = (chute == numero_secreto);
+        
         int maior = chute > numero_secreto;
 
         if (acertou){
-            system("cls");
-            printf("********************************************\n");
-            printf("\n*         Voce acertou, parabens!          *\n");
-            printf("\n*  Voce acertou o jogo em %4.0f tentativas  *\n", lives);
-            printf("\n********************************************\n");
             break;
         }
         else if (maior){
@@ -66,8 +110,22 @@ int main()
         else {
             printf("\nSeu chute foi menor que o numero secreto.\n");
         }
-        
-        lives ++;
+    }
+    
+    printf("Fim de Jogo!\n");
+    
+    if(acertou){
+            system("cls");
+            printf("********************************************\n");
+            printf("\n*         Voce acertou, parabens!          *\n");
+            printf("\n*  Voce acertou o jogo em %d tentativas  *\n", i);
+            printf("\n********************************************\n");
+    }
+    else{
+            system("cls");
+            printf("*********************************************\n");
+            printf("*      Voce perdeu, tente novamente!        *\n");
+            printf("*********************************************\n");
     }
     
     return 0;
